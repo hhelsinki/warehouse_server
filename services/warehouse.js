@@ -35,6 +35,8 @@ function upsertGoodsReceive(req, res) { // func 2 ✅️, 1 ❌️
     const do_receiver__name = req.body.do_receiver__name; //required
     const do_remark__i = req.body.do_remark__i;
     const do_remark__ii = req.body.do_remark__ii;
+    const total_amount = req.body.total_amount; //required
+    const total_price = req.body.total_price; //required
     const dataArray = req.body.dataArray; //required
 
     //Goods Recive ✅️
@@ -77,7 +79,9 @@ function upsertGoodsReceive(req, res) { // func 2 ✅️, 1 ❌️
                     "2": do_remark__ii
                 }
             },
-            "data": dataArray
+            "data": dataArray,
+            "total_amount": total_amount,
+            "total_price": total_price
         }
         fs.writeFileSync(pathGoodsReceive, JSON.stringify(data, null, 2), (err) => {
             if (err)
@@ -166,6 +170,8 @@ function upsertIssueStock(req, res) { // func 2 ✅️, 1 ❌️
     const do_receiver__name = req.body.do_receiver__name; //required
     const do_remark__i = req.body.do_remark__i;
     const do_remark__ii = req.body.do_remark__ii;
+    const total_amount = req.body.total_amount; //required
+    const total_price = req.body.total_price; //required
     const dataArray = req.body.dataArray; //required
 
     //Issue Stock ✅️
@@ -208,7 +214,9 @@ function upsertIssueStock(req, res) { // func 2 ✅️, 1 ❌️
                     "2": do_remark__ii
                 }
             },
-            "data": dataArray
+            "data": dataArray,
+            "total_amount": total_amount,
+            "total_price": total_price
         }
         fs.writeFile(pathIssueStock, JSON.stringify(data, null, 2), (err) => {
             if (err)
