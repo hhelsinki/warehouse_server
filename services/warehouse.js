@@ -1,10 +1,7 @@
-//ISSUE** json version, please use mysql version
-// I. dataArray only push the last index loop. 
-
 var fs = require('fs');
 
 //import func
-let {jsonReader} = require('./json-reader');
+let { jsonReader } = require('./json-reader');
 
 //import json
 const product = require('../json/stockList.json');
@@ -17,7 +14,7 @@ const pathIssueStock = './json/issueStock.json';
 const pathIssueStockHistory = './json/issueStockHistory.json';
 
 
-function upsertGoodsReceive(req, res) { // func 2 ✅️, 1 ❌️
+function upsertGoodsReceive(req, res) { // func all ✅️
     const seller_id = req.body.seller_id; //required
     const seller_name = req.body.seller_name; //required
     const doc_code = req.body.doc_code; //required
@@ -103,18 +100,17 @@ function upsertGoodsReceive(req, res) { // func 2 ✅️, 1 ❌️
         });
     });
 
-    //Stock List Addition ❌️ see issue, go up top 
+    //Stock List Addition ✅️
     const newData = dataArray;
     // check if newData['code'] include in stock['code']
-    for (let i = 0; i < newData.length; i++) {
-        if (product[newData[i].code]) { //TRUE, sum update
-            console.log(newData[i].code, 'exit', true);
+    jsonReader(pathStock, (err, data) => {
+        if (err) {
+            console.log("Error reading file:", err);
+            return;
+        }
 
-            jsonReader(pathStock, (err, data) => {
-                if (err) {
-                    console.log("Error reading file:", err);
-                    return;
-                }
+        for (let i = 0; i < newData.length; i++) {
+            if (product[newData[i].code]) {
 
                 data[newData[i].code] = {
                     ...data[newData[i].code],
@@ -127,32 +123,25 @@ function upsertGoodsReceive(req, res) { // func 2 ✅️, 1 ❌️
                         if (err) console.log('Error writing file:', err);
                     });
                 }, i * 3000);
-            });
 
-
-        }
-        else { //FALSE create 
-            console.log(newData[i].code, 'exit', false);
-
-            jsonReader(pathStock, (err, data) => {
-                if (err) {
-                    console.log("Error reading file:", err);
-                    return;
-                }
-    
+            } else {
                 data[newData[i].code] = newData[i];
-    
-                fs.writeFileSync(pathStock, JSON.stringify(data, null, 2), (err) => {
-                    if (err) console.log('Error writing file:', err);
-                });
-            });
-        }
-    }
-    
 
-    res.send({status: true, msg: 'Sucessfully saved!'});
+                setTimeout(() => {
+                    fs.writeFileSync(pathStock, JSON.stringify(data, null, 2), (err) => {
+                        if (err) console.log('Error writing file:', err);
+                    });
+                }, i * 3000);
+            }
+        }
+
+
+    });
+
+
+    res.send({ status: true, msg: 'Sucessfully saved!' });
 }
-function upsertIssueStock(req, res) { // func 2 ✅️, 1 ❌️
+function upsertIssueStock(req, res) { // func 3 all ✅️
     const buyer_id = req.body.buyer_id; //required
     const buyer_name = req.body.buyer_name; //required
     const doc_code = req.body.doc_code; //required
@@ -238,18 +227,18 @@ function upsertIssueStock(req, res) { // func 2 ✅️, 1 ❌️
         });
     });
 
-    //Stock List Minus ❌️ see issue, go up top
+    //Stock List Minus ✅️
     const newData = dataArray;
     // check if newData['code'] include in stock['code']
-    for (let i = 0; i < newData.length; i++) {
-        if (product[newData[i].code]) { //TRUE, sum update
-            console.log(newData[i].code, 'exit', true);
+    jsonReader(pathStock, (err, data) => {
+        if (err) {
+            console.log("Error reading file:", err);
+            return;
+        }
 
-            jsonReader(pathStock, (err, data) => {
-                if (err) {
-                    console.log("Error reading file:", err);
-                    return;
-                }
+        for (let i = 0; i < newData.length; i++) {
+            if (product[newData[i].code]) { //TRUE, sum update
+                console.log(newData[i].code, 'exit', true);
 
                 data[newData[i].code] = {
                     ...data[newData[i].code],
@@ -262,22 +251,29 @@ function upsertIssueStock(req, res) { // func 2 ✅️, 1 ❌️
                         if (err) console.log('Error writing file:', err);
                     });
                 }, i * 3000);
-            });
-        }
-        else { //FALSE create 
-            console.log(newData[i].code, 'exit', false);
 
-            res.send({status: false, msg: `${newData[i].code} is not exit.`});
-        }
-    }
+            } else { //FALSE create 
+                console.log(newData[i].code, 'exit', false);
 
-    res.send({status: true, msg: 'Sucessfully saved!'});
+                data[newData[i].code] = newData[i];
+
+                setTimeout(() => {
+                    fs.writeFileSync(pathStock, JSON.stringify(data, null, 2), (err) => {
+                        if (err) console.log('Error writing file:', err);
+                    });
+                }, i * 3000);
+            }
+        }
+    });
+
+
+    res.send({ status: true, msg: 'Sucessfully saved!' });
 }
 
-let productList = (req, res) => { // func ✅️
+let getProductList = (req, res) => { // func ✅️
     const productList = Object.values(product);
 
-    res.send({status: true, data: productList});
+    res.send({ status: true, data: productList });
 }
 
 //array to object 
@@ -287,4 +283,4 @@ let productList = (req, res) => { // func ✅️
 
 //console.log(goods_receive__all['RS5201-00001'].data);
 
-module.exports = { upsertGoodsReceive, upsertIssueStock, productList };
+module.exports = { upsertGoodsReceive, upsertIssueStock, getProductList };

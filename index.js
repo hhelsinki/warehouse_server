@@ -8,12 +8,12 @@ app.use(express.json());
 app.use(cors());
 
 //import function
-let {upsertGoodsReceive, upsertIssueStock, productList} = require('./services/warehouse');
+let {upsertGoodsReceive, upsertIssueStock, getProductList} = require('./services/warehouse');
 
 //routes
 app.post('/goods-recieve', upsertGoodsReceive);
 app.post('/issue-stock', upsertIssueStock);
-app.get('/stock-all', productList);
+app.get('/stock-all', getProductList);
 
 //port
 app.listen(PORT, () => {

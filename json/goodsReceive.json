@@ -1,11 +1,11 @@
 {
   "RS5201-00001": {
     "seller": {
-      "id": "VEN-00007",
-      "name": "Bangkok Bus"
+      "id": "VEN-00008",
+      "name": "MK"
     },
     "doc": {
-      "code": "R01",
+      "code": "R02",
       "no.": "RS5201-00001",
       "date": "09/06/2566",
       "ref_date": ""
@@ -32,23 +32,15 @@
     "data": [
       {
         "code": "601-1041",
-        "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
-        "stock": "01",
-        "location": "A-02",
-        "unit": "PACK",
-        "total": 100,
-        "price_per_unit": 60,
-        "amount": 6120
+        "total": 1,
+        "price_per_unit": 10,
+        "amount": 10
       },
       {
         "code": "601-1042",
-        "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
-        "stock": "01",
-        "location": "A-02",
-        "unit": "PACK",
-        "total": 100,
-        "price_per_unit": 70,
-        "amount": 6120
+        "total": 2,
+        "price_per_unit": 20,
+        "amount": 40
       }
     ]
   }
