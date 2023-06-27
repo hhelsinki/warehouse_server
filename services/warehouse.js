@@ -4,7 +4,11 @@ var fs = require('fs');
 let { jsonReader } = require('./json-reader');
 
 //import json
+const goodsReceive = require('../json/goodsReceive.json');
+const issueStock = require('../json/issueStock.json');
 const product = require('../json/stockList.json');
+const historyGR = require('../json/goodsReceiveHistory.json');
+const historyIS = require('../json/issueStockHistory.json');
 
 //path json
 const pathGoodsReceive = './json/goodsReceive.json';
@@ -13,6 +17,40 @@ const pathStock = './json/stockList.json';
 const pathIssueStock = './json/issueStock.json';
 const pathIssueStockHistory = './json/issueStockHistory.json';
 
+//class func
+class AllJson {
+    constructor(mainJson) {
+        this.mainJson = mainJson
+    }
+
+    onCalculate(req, res) {
+        const getJson = this.mainJson;
+
+        let jsonObject = Object.values(getJson);
+
+        res.send({status: true, data: jsonObject})
+    }
+}
+class SearchJson {
+    constructor(mainJson) {
+        this.mainJson = mainJson
+    }
+
+    onCalculate(req, res) {
+        const getJson = this.mainJson;
+        const id = req.query.id;
+
+        res.send({status: true, data: getJson[id]});
+    }
+
+}
+
+//run class func
+var getGRHistory = new AllJson(historyGR);
+var getISHistory = new AllJson(historyIS);
+var getGRHistoryByNameQuery = new SearchJson(goodsReceive);
+var getISHistoryByNameQuery = new SearchJson(issueStock);
+var getPdByNameQuery = new SearchJson(product);
 
 function upsertGoodsReceive(req, res) { // func all ✅️
     const seller_id = req.body.seller_id; //required
@@ -93,7 +131,10 @@ function upsertGoodsReceive(req, res) { // func all ✅️
             return;
         }
 
-        data[doc_no] = doc_date;
+        data[doc_no] = {
+            doc_no: doc_no,
+            date: doc_date
+        }
 
         fs.writeFile(pathGoodsReceiveHistory, JSON.stringify(data, null, 2), (err) => {
             if (err) console.log('Error writing file:', err);
@@ -220,7 +261,12 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
             return;
         }
 
-        data[doc_no] = doc_date;
+        data[doc_no] = {
+            doc_no: doc_no,
+            date: doc_date
+        }
+
+        //data[doc_no] = doc_date;
 
         fs.writeFileSync(pathIssueStockHistory, JSON.stringify(data, null, 2), (err) => {
             if (err) console.log('Error writing file:', err);
@@ -283,4 +329,10 @@ let getProductList = (req, res) => { // func ✅️
 
 //console.log(goods_receive__all['RS5201-00001'].data);
 
-module.exports = { upsertGoodsReceive, upsertIssueStock, getProductList };
+let getGoodsReceiveHistory = getGRHistory.onCalculate.bind(getGRHistory);
+let getIssueStockHistory = getISHistory.onCalculate.bind(getISHistory);
+let getGoodsReceiveByNameQuery = getGRHistoryByNameQuery.onCalculate.bind(getGRHistoryByNameQuery);
+let getIssueStockByNameQuery = getISHistoryByNameQuery.onCalculate.bind(getISHistoryByNameQuery);
+let getProductByNameQuery = getPdByNameQuery.onCalculate.bind(getPdByNameQuery);
+
+module.exports = { upsertGoodsReceive, upsertIssueStock, getProductList, getGoodsReceiveHistory, getIssueStockHistory, getGoodsReceiveByNameQuery, getIssueStockByNameQuery, getProductByNameQuery};

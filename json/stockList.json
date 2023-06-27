@@ -1,14 +1,22 @@
 {
   "601-1041": {
     "code": "601-1041",
-    "total": 3,
-    "price_per_unit": 10,
-    "amount": 30
+    "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
+    "stock": "01",
+    "location": "A-02",
+    "unit": "PACK",
+    "total": 90,
+    "price_per_unit": 60,
+    "amount": 5400
   },
   "601-1042": {
     "code": "601-1042",
-    "total": 6,
-    "price_per_unit": 20,
-    "amount": 120
+    "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
+    "stock": "01",
+    "location": "A-02",
+    "unit": "PACK",
+    "total": 30,
+    "price_per_unit": 80,
+    "amount": 2400
   }
 }

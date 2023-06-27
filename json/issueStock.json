@@ -1,5 +1,5 @@
 {
-  "RS5201-00001": {
+  "IS5201-00001": {
     "buyer": {
       "id": "VEN-00008",
       "name": "MK"
@@ -7,7 +7,7 @@
     "doc": {
       "code": "R02",
       "type": "เบิกขาย",
-      "no.": "RS5201-00001",
+      "no.": "IS5201-00001",
       "date": "09/06/2566",
       "ref": "",
       "ref_date": ""
@@ -34,15 +34,23 @@
     "data": [
       {
         "code": "601-1041",
-        "total": 1,
-        "price_per_unit": 10,
-        "amount": 10
+        "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
+        "stock": "01",
+        "location": "A-02",
+        "unit": "PACK",
+        "total": 10,
+        "price_per_unit": 60,
+        "amount": 600
       },
       {
         "code": "601-1042",
-        "total": 2,
-        "price_per_unit": 20,
-        "amount": 40
+        "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
+        "stock": "01",
+        "location": "A-02",
+        "unit": "PACK",
+        "total": 20,
+        "price_per_unit": 80,
+        "amount": 1600
       }
     ]
   }

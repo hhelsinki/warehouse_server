@@ -43,5 +43,58 @@
         "amount": 40
       }
     ]
+  },
+  "RS5201-00002": {
+    "seller": {
+      "id": "VEN-00008",
+      "name": "MK"
+    },
+    "doc": {
+      "code": "R02",
+      "no.": "RS5201-00002",
+      "date": "09/06/2566",
+      "ref_date": ""
+    },
+    "recorder": {
+      "code": "EMP-00001",
+      "name": "สมหญิง เป็นสุข"
+    },
+    "DO": {
+      "no.": "",
+      "department": {
+        "code": "004-PU",
+        "title": "แผนกจัดซื้อ"
+      },
+      "receiver": {
+        "code": "EMP-00002",
+        "name": "กัญญา มาดี"
+      },
+      "remark": {
+        "1": "",
+        "2": ""
+      }
+    },
+    "data": [
+      {
+        "code": "601-1041",
+        "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
+        "stock": "01",
+        "location": "A-02",
+        "unit": "PACK",
+        "total": 100,
+        "price_per_unit": 60,
+        "amount": 6000
+      },
+      {
+        "code": "601-1042",
+        "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
+        "stock": "01",
+        "location": "A-02",
+        "unit": "PACK",
+        "total": 50,
+        "price_per_unit": 80,
+        "amount": 4000
+      }
+    ]
   }
 }
