@@ -68,8 +68,8 @@ function upsertGoodsReceive(req, res) { // func all ✅️
     const do_department__title = req.body.do_department__title; //required
     const do_receiver__code = req.body.do_receiver__code; //required
     const do_receiver__name = req.body.do_receiver__name; //required
-    const do_remark__i = req.body.do_remark__i;
-    const do_remark__ii = req.body.do_remark__ii;
+    const remark__i = req.body.remark__i;
+    const remark__ii = req.body.remark__ii;
     const total_amount = req.body.total_amount; //required
     const total_price = req.body.total_price; //required
     const dataArray = req.body.dataArray; //required
@@ -90,7 +90,7 @@ function upsertGoodsReceive(req, res) { // func all ✅️
             "doc": {
                 "code": doc_code,
                 "type": doc_type,
-                "no.": doc_no,
+                "no": doc_no,
                 "date": doc_date,
                 "ref": doc_ref,
                 "ref_date": doc_ref__date
@@ -99,8 +99,8 @@ function upsertGoodsReceive(req, res) { // func all ✅️
                 "code": recorder_code,
                 "name": recorder_name
             },
-            "DO": {
-                "no.": do_no,
+            "do": {
+                "no": do_no,
                 "department": {
                     "code": do_department__code,
                     "title": do_department__title
@@ -108,11 +108,11 @@ function upsertGoodsReceive(req, res) { // func all ✅️
                 "receiver": {
                     "code": do_receiver__code,
                     "name": do_receiver__name
-                },
-                "remark": {
-                    "1": do_remark__i,
-                    "2": do_remark__ii
                 }
+            },
+            "remark": {
+                "i": remark__i,
+                "ii": remark__ii
             },
             "data": dataArray,
             "total_amount": total_amount,
@@ -198,8 +198,8 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
     const do_department__title = req.body.do_department__title; //required
     const do_receiver__code = req.body.do_receiver__code; //required
     const do_receiver__name = req.body.do_receiver__name; //required
-    const do_remark__i = req.body.do_remark__i;
-    const do_remark__ii = req.body.do_remark__ii;
+    const remark__i = req.body.remark__i;
+    const remark__ii = req.body.remark__ii;
     const total_amount = req.body.total_amount; //required
     const total_price = req.body.total_price; //required
     const dataArray = req.body.dataArray; //required
@@ -220,7 +220,7 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
             "doc": {
                 "code": doc_code,
                 "type": doc_type,
-                "no.": doc_no,
+                "no": doc_no,
                 "date": doc_date,
                 "ref": doc_ref,
                 "ref_date": doc_ref__date
@@ -229,8 +229,8 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
                 "code": recorder_code,
                 "name": recorder_name
             },
-            "DO": {
-                "no.": do_no,
+            "do": {
+                "no": do_no,
                 "department": {
                     "code": do_department__code,
                     "title": do_department__title
@@ -238,11 +238,11 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
                 "receiver": {
                     "code": do_receiver__code,
                     "name": do_receiver__name
-                },
-                "remark": {
-                    "1": do_remark__i,
-                    "2": do_remark__ii
                 }
+            },
+            "remark": {
+                "i": remark__i,
+                "ii": remark__ii
             },
             "data": dataArray,
             "total_amount": total_amount,
