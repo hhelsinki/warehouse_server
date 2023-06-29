@@ -28,7 +28,7 @@ class AllJson {
 
         let jsonObject = Object.values(getJson);
 
-        res.send({status: true, data: jsonObject})
+        res.send({ status: true, data: jsonObject })
     }
 }
 class SearchJson {
@@ -40,7 +40,7 @@ class SearchJson {
         const getJson = this.mainJson;
         const id = req.query.id;
 
-        res.send({status: true, data: getJson[id]});
+        res.send({ status: true, data: getJson[id] });
     }
 
 }
@@ -56,10 +56,10 @@ function upsertGoodsReceive(req, res) { // func all ✅️
     const seller_id = req.body.seller_id; //required
     const seller_name = req.body.seller_name; //required
     const doc_code = req.body.doc_code; //required
-    const doc_type = req.body.type; //required
+    const doc_type = req.body.doc_type; //required
     const doc_no = req.body.doc_no; //required
     const doc_date = req.body.doc_date; //required
-    const doc_ref = req.body.ref;
+    const doc_ref = req.body.doc_ref;
     const doc_ref__date = req.body.doc_ref__date;
     const recorder_code = req.body.recorder_code; //required
     const recorder_name = req.body.recorder_name; //required
@@ -73,6 +73,14 @@ function upsertGoodsReceive(req, res) { // func all ✅️
     const total_amount = req.body.total_amount; //required
     const total_price = req.body.total_price; //required
     const dataArray = req.body.dataArray; //required
+
+    console.log(dataArray.length)
+
+    if (seller_id.length < 1 || seller_name.length < 1 || doc_type.length < 1 || doc_no.length < 1 || doc_date.length < 1 || total_amount.length < 1 || total_price.length < 1 || dataArray.length < 1) {
+        //res.sendStatus(411);
+        res.send({status: false, msg: 'โปรดกรอกข้อมูลดอกจันและรายการสินค้าให้ครบ'});
+        return;
+    }
 
     //Goods Recive ✅️
     jsonReader(pathGoodsReceive, (err, data) => {
@@ -155,8 +163,8 @@ function upsertGoodsReceive(req, res) { // func all ✅️
 
                 data[newData[i].code] = {
                     ...data[newData[i].code],
-                    total: (data[newData[i].code].total) + newData[i].total,
-                    amount: (data[newData[i].code].amount) + (newData[i].total) * (data[newData[i].code].price_per_unit)
+                    amount: (data[newData[i].code].amount * 1) + (newData[i].amount * 1),
+                    price_total: (data[newData[i].code].price_total * 1) + (newData[i].amount * 1) * (data[newData[i].code].price_unit * 1)
                 }
 
                 setTimeout(() => {
@@ -179,7 +187,6 @@ function upsertGoodsReceive(req, res) { // func all ✅️
 
     });
 
-
     res.send({ status: true, msg: 'Sucessfully saved!' });
 }
 function upsertIssueStock(req, res) { // func 3 all ✅️
@@ -193,16 +200,22 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
     const doc_ref__date = req.body.doc_ref__date;
     const recorder_code = req.body.recorder_code; //required
     const recorder_name = req.body.recorder_name; //required
-    const do_no = req.body.do_no;
-    const do_department__code = req.body.do_department__code; //required
-    const do_department__title = req.body.do_department__title; //required
-    const do_receiver__code = req.body.do_receiver__code; //required
-    const do_receiver__name = req.body.do_receiver__name; //required
+    const dp_no = req.body.dp_no;
+    const dp_department__code = req.body.dp_department__code; //required
+    const dp_department__title = req.body.dp_department__title; //required
+    const dp_receiver__code = req.body.dp_receiver__code; //required
+    const dp_receiver__name = req.body.dp_receiver__name; //required
     const remark__i = req.body.remark__i;
     const remark__ii = req.body.remark__ii;
     const total_amount = req.body.total_amount; //required
     const total_price = req.body.total_price; //required
     const dataArray = req.body.dataArray; //required
+
+    if (buyer_id.length < 1 || buyer_name.length < 1 || doc_type.length < 1 || doc_no.length < 1 || doc_date.length < 1 || total_amount.length < 1 || total_price.length < 1 || dataArray.length < 1) {
+        //res.sendStatus(411);
+        res.send({status: false, msg: 'โปรดกรอกข้อมูลดอกจันและรายการสินค้าให้ครบ'});
+        return;
+    }
 
     //Issue Stock ✅️
     jsonReader(pathIssueStock, (err, data) => {
@@ -229,15 +242,15 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
                 "code": recorder_code,
                 "name": recorder_name
             },
-            "do": {
-                "no": do_no,
+            "dp": {
+                "no": dp_no,
                 "department": {
-                    "code": do_department__code,
-                    "title": do_department__title
+                    "code": dp_department__code,
+                    "title": dp_department__title
                 },
                 "receiver": {
-                    "code": do_receiver__code,
-                    "name": do_receiver__name
+                    "code": dp_receiver__code,
+                    "name": dp_receiver__name
                 }
             },
             "remark": {
@@ -283,13 +296,17 @@ function upsertIssueStock(req, res) { // func 3 all ✅️
         }
 
         for (let i = 0; i < newData.length; i++) {
-            if (product[newData[i].code]) { //TRUE, sum update
-                console.log(newData[i].code, 'exit', true);
+            if (product[newData[i].code__is]) { //TRUE, sum update
+                console.log(newData[i].code__is, 'exit', true);
 
-                data[newData[i].code] = {
-                    ...data[newData[i].code],
-                    total: (data[newData[i].code].total) - newData[i].total,
-                    amount: (data[newData[i].code].amount) - (newData[i].total) * (data[newData[i].code].price_per_unit)
+                data[newData[i].code__is] = {
+                    ...data[newData[i].code__is],
+                    amount: (data[newData[i].code__is].amount * 1) - (newData[i].amount__is * 1),
+                    price_total: (data[newData[i].code__is].price_total * 1) - (newData[i].amount__is * 1) * (data[newData[i].code__is].price_unit * 1)
+        
+
+                    //total: (data[newData[i].code].total) - newData[i].total,
+                    //amount: (data[newData[i].code].amount) - (newData[i].total) * (data[newData[i].code].price_per_unit)
                 }
 
                 setTimeout(() => {
@@ -335,4 +352,4 @@ let getGoodsReceiveByNameQuery = getGRHistoryByNameQuery.onCalculate.bind(getGRH
 let getIssueStockByNameQuery = getISHistoryByNameQuery.onCalculate.bind(getISHistoryByNameQuery);
 let getProductByNameQuery = getPdByNameQuery.onCalculate.bind(getPdByNameQuery);
 
-module.exports = { upsertGoodsReceive, upsertIssueStock, getProductList, getGoodsReceiveHistory, getIssueStockHistory, getGoodsReceiveByNameQuery, getIssueStockByNameQuery, getProductByNameQuery};
+module.exports = { upsertGoodsReceive, upsertIssueStock, getProductList, getGoodsReceiveHistory, getIssueStockHistory, getGoodsReceiveByNameQuery, getIssueStockByNameQuery, getProductByNameQuery };

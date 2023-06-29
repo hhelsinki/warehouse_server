@@ -1,22 +1,13 @@
 {
-  "601-1041": {
-    "code": "601-1041",
-    "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
-    "stock": "01",
-    "location": "A-02",
-    "unit": "PACK",
-    "total": 90,
-    "price_per_unit": 60,
-    "amount": 5400
-  },
-  "601-1042": {
-    "code": "601-1042",
-    "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
-    "stock": "01",
-    "location": "A-02",
-    "unit": "PACK",
-    "total": 30,
-    "price_per_unit": 80,
-    "amount": 2400
+  "FD-001": {
+    "id": 1688045989109,
+    "code": "FD-001",
+    "title": "Water",
+    "stock": "",
+    "location": "",
+    "unit": "",
+    "amount": 80,
+    "price_unit": "29",
+    "price_total": 2320
   }
 }

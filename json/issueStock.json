@@ -1,57 +1,50 @@
 {
-  "IS5201-00001": {
+  "IS-002": {
     "buyer": {
-      "id": "VEN-00008",
-      "name": "MK"
+      "id": "CUS-00002",
+      "name": "JJ Mall"
     },
     "doc": {
-      "code": "R02",
+      "code": "S01",
       "type": "เบิกขาย",
-      "no.": "IS5201-00001",
-      "date": "09/06/2566",
+      "no": "IS-002",
+      "date": "29/6/2566",
       "ref": "",
       "ref_date": ""
     },
     "recorder": {
       "code": "EMP-00001",
-      "name": "สมหญิง เป็นสุข"
+      "name": "กัญญา เป็นสุข"
     },
-    "do": {
-      "no.": "",
+    "dp": {
+      "no": "",
       "department": {
-        "code": "004-PU",
-        "title": "แผนกจัดซื้อ"
+        "code": "003-SL",
+        "title": "แผนกขายสินค้า"
       },
       "receiver": {
-        "code": "EMP-00002",
-        "name": "กัญญา มาดี"
-      },
-      "remark": {
-        "1": "",
-        "2": ""
+        "code": "EMP-00003",
+        "name": "พรรณี ภูชัย"
       }
+    },
+    "remark": {
+      "i": "",
+      "ii": ""
     },
     "data": [
       {
-        "code": "601-1041",
-        "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
-        "stock": "01",
-        "location": "A-02",
-        "unit": "PACK",
-        "total": 10,
-        "price_per_unit": 60,
-        "amount": 600
-      },
-      {
-        "code": "601-1042",
-        "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
-        "stock": "01",
-        "location": "A-02",
-        "unit": "PACK",
-        "total": 20,
-        "price_per_unit": 80,
-        "amount": 1600
+        "id__is": 1688048152685,
+        "code__is": "FD-001",
+        "title__is": "Water",
+        "stock__is": "01",
+        "location__is": "A-01",
+        "unit__is": "PACK",
+        "amount__is": "20",
+        "price_unit__is": "29",
+        "price_total__is": 580
       }
-    ]
+    ],
+    "total_amount": 20,
+    "total_price": 580
   }
 }

@@ -11,7 +11,7 @@ app.use(cors());
 let {upsertGoodsReceive, upsertIssueStock, getProductList, getGoodsReceiveHistory, getIssueStockHistory, getGoodsReceiveByNameQuery, getIssueStockByNameQuery, getProductByNameQuery} = require('./services/warehouse');
 
 //routes
-app.post('/goods-recieve', upsertGoodsReceive);
+app.post('/goods-receive', upsertGoodsReceive);
 app.post('/issue-stock', upsertIssueStock);
 app.get('/stock-all', getProductList);
 app.get('/history-gr', getGoodsReceiveHistory);
@@ -22,7 +22,7 @@ app.get('/search-product', getProductByNameQuery);
 
 //port
 app.listen(PORT, () => {
-    console.log('Warehose server is running on ' + PORT);
+    console.log('Warehose server is running on ' + PORT + ' Created by Bongkot S.');
 });
 
 

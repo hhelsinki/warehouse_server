@@ -1,100 +1,98 @@
 {
-  "RS5201-00001": {
+  "GR-001": {
     "seller": {
-      "id": "VEN-00008",
-      "name": "MK"
+      "id": "VEN-00006",
+      "name": "Green staionary"
     },
     "doc": {
-      "code": "R02",
-      "no.": "RS5201-00001",
-      "date": "09/06/2566",
+      "code": "R01",
+      "type": "ซื้อสินค้า",
+      "no": "GR-001",
+      "date": "29/6/2566",
+      "ref": "",
       "ref_date": ""
     },
     "recorder": {
       "code": "EMP-00001",
-      "name": "สมหญิง เป็นสุข"
+      "name": "กัญญา เป็นสุข"
     },
     "do": {
-      "no.": "",
+      "no": "",
       "department": {
         "code": "004-PU",
         "title": "แผนกจัดซื้อ"
       },
       "receiver": {
         "code": "EMP-00002",
-        "name": "กัญญา มาดี"
-      },
-      "remark": {
-        "1": "",
-        "2": ""
+        "name": "สมชาย มานะ"
       }
+    },
+    "remark": {
+      "i": "",
+      "ii": ""
     },
     "data": [
       {
-        "code": "601-1041",
-        "total": 1,
-        "price_per_unit": 10,
-        "amount": 10
-      },
-      {
-        "code": "601-1042",
-        "total": 2,
-        "price_per_unit": 20,
-        "amount": 40
+        "id": 1688045989109,
+        "code": "FD-001",
+        "title": "Water",
+        "stock": "",
+        "location": "",
+        "unit": "",
+        "amount": "100",
+        "price_unit": "29",
+        "price_total": 2900
       }
-    ]
+    ],
+    "total_amount": 100,
+    "total_price": 2900
   },
-  "RS5201-00002": {
+  "GR-002": {
     "seller": {
-      "id": "VEN-00008",
-      "name": "MK"
+      "id": "VEN-00007",
+      "name": "B2S"
     },
     "doc": {
-      "code": "R02",
-      "no.": "RS5201-00002",
-      "date": "09/06/2566",
+      "code": "R01",
+      "type": "ซื้อสินค้า",
+      "no": "GR-002",
+      "date": "29/6/2566",
+      "ref": "",
       "ref_date": ""
     },
     "recorder": {
       "code": "EMP-00001",
-      "name": "สมหญิง เป็นสุข"
+      "name": "กัญญา เป็นสุข"
     },
     "do": {
-      "no.": "",
+      "no": "",
       "department": {
         "code": "004-PU",
         "title": "แผนกจัดซื้อ"
       },
       "receiver": {
         "code": "EMP-00002",
-        "name": "กัญญา มาดี"
-      },
-      "remark": {
-        "1": "",
-        "2": ""
+        "name": "สมชาย มานะ"
       }
+    },
+    "remark": {
+      "i": "",
+      "ii": ""
     },
     "data": [
       {
-        "code": "601-1041",
-        "name": "แฟ้มสันกว้างตราช้าง 120/125(Black)",
+        "id": 1688048065824,
+        "code": "FD-001",
+        "title": "Water",
         "stock": "01",
-        "location": "A-02",
+        "location": "A-01",
         "unit": "PACK",
-        "total": 100,
-        "price_per_unit": 60,
-        "amount": 6000
-      },
-      {
-        "code": "601-1042",
-        "name": "แฟ้มสันกว้างตราช้าง 120/125(Red)",
-        "stock": "01",
-        "location": "A-02",
-        "unit": "PACK",
-        "total": 50,
-        "price_per_unit": 80,
-        "amount": 4000
+        "amount": "50",
+        "price_unit": "29",
+        "price_total": 1450
       }
-    ]
+    ],
+    "total_amount": 50,
+    "total_price": 1450
   }
 }
